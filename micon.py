@@ -24,6 +24,8 @@ BG_COLOR_ALPHA = (0,0,0)
 BG_COLOR_RGB = (255,255,255)
 
 def merge(path, image_block, size=24, isaplha=None, newname=None):
+    if path[-1] != '/':
+        path += '/'
     bg_color = BG_COLOR_ALPHA if isaplha else BG_COLOR_RGB
     isaplha = 'a' if isaplha  else 'i'
     
@@ -45,7 +47,8 @@ def merge(path, image_block, size=24, isaplha=None, newname=None):
 
         # setting new outputname
         image_key = newname if newname else image_key
-
+        if image_key[-1] != '_':
+            image_key += '_'
         background.save(path+image_key+'{size}{mode}.bmp'.format(size=size, mode=isaplha))
 
 def find_range(filename):
@@ -80,7 +83,7 @@ def get_file(path):
 
 if __name__ == '__main__':
     args = p.parse_args()
-
+     
     print p.format_help()
     if args.path:
         image_key = get_file(args.path)
