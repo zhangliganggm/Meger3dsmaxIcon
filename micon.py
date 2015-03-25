@@ -16,6 +16,7 @@ p = ArgumentParser(usage='Meger 3dsmax Icon 0.1 by AceeStudio', description='Thi
 p.add_argument('-path', default=False, help='Auto Serch Icon of Path')  
 p.add_argument('-large', default=24, type=int, help='Large Size of Icon')  
 p.add_argument('-small', default=16, type=int, help='Small Size of Icon')  
+p.add_argument('-newname', default=False, help='output fine image with newname')  
 
 filter = ('.jpg', '.png', '.tif')
 filter_l = lambda name: (name.endswith(a) for a in filter)
@@ -83,7 +84,7 @@ if __name__ == '__main__':
     print p.format_help()
     if args.path:
         image_key = get_file(args.path)
-        merge(args.path, image_key, args.large)
-        merge(args.path, image_key, args.large, True)
-        merge(args.path, image_key, args.small)
-        merge(args.path, image_key, args.small, True)
+        merge(args.path, image_key, args.large, newname=args.newname)
+        merge(args.path, image_key, args.large, True, newname=args.newname)
+        merge(args.path, image_key, args.small, newname=args.newname)
+        merge(args.path, image_key, args.small, True, newname=args.newname)
